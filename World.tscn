@@ -1,10 +1,10 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Sprites/Slink/Run/1.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://JungleDirtTileSet.tres" type="TileSet" id=3]
 [ext_resource path="res://Sprites/Slink/Idle/03_64x64.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Slink/Run/0_75x75.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Slink/Run/0.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Slink/Run/2.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Slink/Idle/09_64x64.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Slink/Idle/08_64x64.png" type="Texture" id=8]
@@ -30,8 +30,9 @@
 [ext_resource path="res://Sprites/Slink/Idle/22_64x64.png" type="Texture" id=28]
 [ext_resource path="res://Sprites/Slink/Idle/21_64x64.png" type="Texture" id=29]
 [ext_resource path="res://Sprites/Slink/Jump/08.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Slink/Fall/0.png" type="Texture" id=31]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 23 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 29 ), ExtResource( 28 ) ],
 "loop": true,
@@ -47,9 +48,14 @@ animations = [ {
 "loop": true,
 "name": "Jump",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 31 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 22, 27 )
 
 [node name="World" type="Node"]
@@ -62,18 +68,18 @@ __meta__ = {
 }
 
 [node name="Sprite" type="AnimatedSprite" parent="Player"]
-frames = SubResource( 2 )
-animation = "Idle"
+frames = SubResource( 1 )
+animation = "Fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2( -1, 1 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 393218, 0, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 393232, 1, 0, 393233, 2, 0, 458754, 3, 0, 458755, 4, 0, 458756, 4, 0, 458757, 4, 0, 458758, 4, 0, 458759, 4, 0, 458760, 4, 0, 458761, 4, 0, 458762, 4, 0, 458763, 4, 0, 458764, 4, 0, 458765, 4, 0, 458766, 4, 0, 458767, 4, 0, 458768, 4, 0, 458769, 5, 0, 524290, 6, 0, 524291, 7, 0, 524292, 7, 0, 524293, 7, 0, 524294, 7, 0, 524295, 7, 0, 524296, 7, 0, 524297, 7, 0, 524298, 7, 0, 524299, 7, 0, 524300, 7, 0, 524301, 7, 0, 524302, 7, 0, 524303, 7, 0, 524304, 7, 0, 524305, 8, 0 )
+tile_data = PoolIntArray( 65539, 0, 0, 65540, 1, 0, 65541, 1, 0, 65542, 2, 0, 131075, 6, 0, 131076, 7, 0, 131077, 7, 0, 131078, 8, 0, 262157, 0, 0, 262158, 1, 0, 262159, 1, 0, 262160, 2, 0, 327693, 3, 0, 327694, 4, 0, 327695, 4, 0, 327696, 5, 0, 393229, 3, 0, 393230, 4, 0, 393231, 4, 0, 393232, 5, 0, 458754, 0, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 458768, 1, 0, 458769, 1, 0, 458770, 2, 0, 524290, 3, 0, 524291, 4, 0, 524292, 4, 0, 524293, 4, 0, 524294, 4, 0, 524295, 4, 0, 524296, 4, 0, 524297, 4, 0, 524298, 4, 0, 524299, 4, 0, 524300, 4, 0, 524301, 4, 0, 524302, 4, 0, 524303, 4, 0, 524304, 4, 0, 524305, 4, 0, 524306, 5, 0, 589826, 6, 0, 589827, 7, 0, 589828, 7, 0, 589829, 7, 0, 589830, 7, 0, 589831, 7, 0, 589832, 7, 0, 589833, 7, 0, 589834, 7, 0, 589835, 7, 0, 589836, 7, 0, 589837, 7, 0, 589838, 7, 0, 589839, 7, 0, 589840, 7, 0, 589841, 7, 0, 589842, 8, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
