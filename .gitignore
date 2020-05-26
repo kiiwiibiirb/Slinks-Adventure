@@ -9,4 +9,4 @@ export_presets.cfg
 data_*/
 
 # VSCode ignores
-.vscode
+.vscode/
